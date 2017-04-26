@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Teaduri mõtted by teadur</title>
+    <link rel="stylesheet" href="/assets/css/style.css?v=36bb37ece114f4942008d694e50ff478feacc5fc">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/assets/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/assets/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="http://github.com/teadur/teadur.github.io">View On GitHub</a></li>
+          
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Teaduri mõtted</h1>
+          <p>Siin blogis arvan ma erinevatel teemadel
+</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="http://github.com/teadur">teadur</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <link rel="stylesheet" href="/assets/main.css">
+<article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">CPU Microcode is important - loginctl unlock-sessions</h1>
+  </header>
+
+  <div class="post-content">
+    <p>I recently decided to move my home pc’s not so used Linux from <a href="https://wiki.debian.org/DebianWheezy">Debian Wheezy</a> to <a href="https://wiki.debian.org/DebianStretch">Debian Stretch</a>. To give it a try and help with testing Stretch before actual release, Stretch has been frozen for few months now and should be released later this year.</p>
+
+<p>The Upgrade went smoothly from Wheezy-&gt;Jessie-&gt;Stretch.
+So now i was running Debian Stretch with new KDE5 Plasma desktop with proprietary nvidia drivers.
+I’m running multi user setup, where every family member has his/her own user to use the pc.
+To my surprise I got call from other user that there is error message on screen to continue run “loginctl unlock-sessions”.</p>
+
+<p>One of the perks/tradeoffs of running Debian is that usualy other distros have already had the problems you are running into if they arent Debian specific.</p>
+
+<p>At first glance it seemed like systemd related problem, after some googling I found something <a href="https://bugs.kde.org/show_bug.cgi?id=360489">similar</a> related to kde, actualy there was several posts from 2015/2016 related to kscreenlocker and systemd issues that broke lockscreen, but my problem seemed a bit different because locking/delocking itself was working okey, but the problem would appear when users were switched.</p>
+
+<p>So I continued searching for bug report that would be more similar to mine, after some more effort i managed to find <a href="https://bugs.archlinux.org/task/50626">bugreport</a> what matches my description. Being relatively recent and offering some more hints into the problem (comments mention that the problem only affects machines with nvidia proprietary drivers). Besides giving more data to figure out the problem it showed that I’m not alone and the same problem is affecting people on different distros so it isn’t Debian Specific. Sadly the bug report didnot offer actual solution for me.</p>
+
+<p>So i decided to go back and search for more kde5 related issues and solutions and found <a href="https://bbs.archlinux.org/viewtopic.php?id=196536">this thread</a> what stood out was message “Also don’t forget to update your Intel CPU microcode”, as of i hadn’t knowingly updated my cpu microcode i decided to check what version im running and give it a try.</p>
+
+<p>This PC has actualy fairly recent cpu:</p>
+
+<figure class="highlight"><pre><code class="language-shell-session" data-lang="shell-session">root@home:~# grep "model name" /proc/cpuinfo  | head -n1
+model name      : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz</code></pre></figure>
+
+<p>To figure out what microcode cpu is running, dmesg comes to rescue</p>
+
+<figure class="highlight"><pre><code class="language-shell-session" data-lang="shell-session">root@home:~#  dmesg | grep 'microcode'
+kernel: [    1.063689] microcode: sig=0x306c3, pf=0x2, revision=0x17</code></pre></figure>
+
+<p>After finding the microcode im running from <a href="http://metadata.ftp-master.debian.org/changelogs/non-free/i/intel-microcode/intel-microcode_3.20161104.1_changelog">intel-microcode package changelog</a> I figured that I’m running cpu microcode from 2014, most likely the same version it came from factory.
+Debian can upgrade your cpu microcode simply by installing apropriate package and rebooting (the microcode will be updated at boot time).</p>
+
+<figure class="highlight"><pre><code class="language-shell-session" data-lang="shell-session">root@home:~#  apt-get install intel-microcode</code></pre></figure>
+
+<p>After reboot dmesg shows something new:</p>
+
+<figure class="highlight"><pre><code class="language-shell-session" data-lang="shell-session">root@home:~#  dmesg | grep 'microcode'
+[    0.000000] microcode: microcode updated early to revision 0x20, date = 2016-03-16
+[    1.063617] microcode: sig=0x306c3, pf=0x2, revision=0x20
+[    1.063964] microcode: Microcode Update Driver: v2.01 &lt;tigran@aivazian.fsnet.co.uk&gt;, Peter Oruba</code></pre></figure>
+
+<p>Now that I was running latest microcode I gave the user switching another try and VOILA it is working as intended.
+<b>Lesson learned the hard way: if you run into “strange” problems with your Linux, make sure you are running the latest microcode available for your cpu. </b></p>
+
+
+  </div>
+
+</article>
+
+
+      </section>
+
+    </div>
+
+    
+      <script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-98190052-1', 'auto');
+        ga('send', 'pageview');
+      </script>
+    
+  </body>
+</html>

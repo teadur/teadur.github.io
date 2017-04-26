@@ -1,5 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://blog.gj.ee/feed.xml" rel="self" type="application/atom+xml" /><link href="http://blog.gj.ee/" rel="alternate" type="text/html" /><updated>2017-04-27T00:09:13+03:00</updated><id>http://blog.gj.ee/</id><title type="html">Teaduri mõtted</title><subtitle>Siin blogis arvan ma erinevatel teemadel
-</subtitle><entry><title type="html">Owncloudi arendus ja ärimudel</title><link href="http://blog.gj.ee/i026/2017/04/21/ari-ja-arendus-mudelid.html" rel="alternate" type="text/html" title="Owncloudi arendus ja ärimudel" /><published>2017-04-21T12:00:00+03:00</published><updated>2017-04-21T12:00:00+03:00</updated><id>http://blog.gj.ee/i026/2017/04/21/ari-ja-arendus-mudelid</id><content type="html" xml:base="http://blog.gj.ee/i026/2017/04/21/ari-ja-arendus-mudelid.html">&lt;p&gt;Täna vaatlen veidi vaba tarkvara projekti &lt;a href=&quot;https://owncloud.org&quot;&gt;Owncloud&lt;/a&gt; arendus ja ärimudelit.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://blog.gj.ee/feed.xml" rel="self" type="application/atom+xml" /><link href="http://blog.gj.ee/" rel="alternate" type="text/html" /><updated>2017-04-27T02:00:20+03:00</updated><id>http://blog.gj.ee/</id><title type="html">Teaduri mõtted</title><subtitle>Siin blogis arvan ma erinevatel teemadel
+</subtitle><entry><title type="html">CPU Microcode is important - loginctl unlock-sessions</title><link href="http://blog.gj.ee/linux/debian/stretch/kde/2017/04/27/kde-user-switch.html" rel="alternate" type="text/html" title="CPU Microcode is important - loginctl unlock-sessions" /><published>2017-04-27T02:00:00+03:00</published><updated>2017-04-27T02:00:00+03:00</updated><id>http://blog.gj.ee/linux/debian/stretch/kde/2017/04/27/kde-user-switch</id><content type="html" xml:base="http://blog.gj.ee/linux/debian/stretch/kde/2017/04/27/kde-user-switch.html">&lt;p&gt;I recently decided to move my home pc’s not so used Linux from &lt;a href=&quot;https://wiki.debian.org/DebianWheezy&quot;&gt;Debian Wheezy&lt;/a&gt; to &lt;a href=&quot;https://wiki.debian.org/DebianStretch&quot;&gt;Debian Stretch&lt;/a&gt;. To give it a try and help with testing Stretch before actual release, Stretch has been frozen for few months now and should be released later this year.&lt;/p&gt;
+
+&lt;p&gt;The Upgrade went smoothly from Wheezy-&amp;gt;Jessie-&amp;gt;Stretch.
+So now i was running Debian Stretch with new KDE5 Plasma desktop with proprietary nvidia drivers.
+I’m running multi user setup, where every family member has his/her own user to use the pc.
+To my surprise I got call from other user that there is error message on screen to continue run “loginctl unlock-sessions”.&lt;/p&gt;
+
+&lt;p&gt;One of the perks/tradeoffs of running Debian is that usualy other distros have already had the problems you are running into if they arent Debian specific.&lt;/p&gt;
+
+&lt;p&gt;At first glance it seemed like systemd related problem, after some googling I found something &lt;a href=&quot;https://bugs.kde.org/show_bug.cgi?id=360489&quot;&gt;similar&lt;/a&gt; related to kde, actualy there was several posts from 2015/2016 related to kscreenlocker and systemd issues that broke lockscreen, but my problem seemed a bit different because locking/delocking itself was working okey, but the problem would appear when users were switched.&lt;/p&gt;
+
+&lt;p&gt;So I continued searching for bug report that would be more similar to mine, after some more effort i managed to find &lt;a href=&quot;https://bugs.archlinux.org/task/50626&quot;&gt;bugreport&lt;/a&gt; what matches my description. Being relatively recent and offering some more hints into the problem (comments mention that the problem only affects machines with nvidia proprietary drivers). Besides giving more data to figure out the problem it showed that I’m not alone and the same problem is affecting people on different distros so it isn’t Debian Specific. Sadly the bug report didnot offer actual solution for me.&lt;/p&gt;
+
+&lt;p&gt;So i decided to go back and search for more kde5 related issues and solutions and found &lt;a href=&quot;https://bbs.archlinux.org/viewtopic.php?id=196536&quot;&gt;this thread&lt;/a&gt; what stood out was message “Also don’t forget to update your Intel CPU microcode”, as of i hadn’t knowingly updated my cpu microcode i decided to check what version im running and give it a try.&lt;/p&gt;
+
+&lt;p&gt;This PC has actualy fairly recent cpu:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell-session&quot; data-lang=&quot;shell-session&quot;&gt;root@home:~# grep &quot;model name&quot; /proc/cpuinfo  | head -n1
+model name      : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;To figure out what microcode cpu is running, dmesg comes to rescue&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell-session&quot; data-lang=&quot;shell-session&quot;&gt;root@home:~#  dmesg | grep 'microcode'
+kernel: [    1.063689] microcode: sig=0x306c3, pf=0x2, revision=0x17&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;After finding the microcode im running from &lt;a href=&quot;http://metadata.ftp-master.debian.org/changelogs/non-free/i/intel-microcode/intel-microcode_3.20161104.1_changelog&quot;&gt;intel-microcode package changelog&lt;/a&gt; I figured that I’m running cpu microcode from 2014, most likely the same version it came from factory.
+Debian can upgrade your cpu microcode simply by installing apropriate package and rebooting (the microcode will be updated at boot time).&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell-session&quot; data-lang=&quot;shell-session&quot;&gt;root@home:~#  apt-get install intel-microcode&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;After reboot dmesg shows something new:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell-session&quot; data-lang=&quot;shell-session&quot;&gt;root@home:~#  dmesg | grep 'microcode'
+[    0.000000] microcode: microcode updated early to revision 0x20, date = 2016-03-16
+[    1.063617] microcode: sig=0x306c3, pf=0x2, revision=0x20
+[    1.063964] microcode: Microcode Update Driver: v2.01 &amp;lt;tigran@aivazian.fsnet.co.uk&amp;gt;, Peter Oruba&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Now that I was running latest microcode I gave the user switching another try and VOILA it is working as intended.
+&lt;b&gt;Lesson learned the hard way: if you run into “strange” problems with your Linux, make sure you are running the latest microcode available for your cpu. &lt;/b&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">I recently decided to move my home pc’s not so used Linux from Debian Wheezy to Debian Stretch. To give it a try and help with testing Stretch before actual release, Stretch has been frozen for few months now and should be released later this year.</summary></entry><entry><title type="html">Owncloudi arendus ja ärimudel</title><link href="http://blog.gj.ee/i026/2017/04/21/ari-ja-arendus-mudelid.html" rel="alternate" type="text/html" title="Owncloudi arendus ja ärimudel" /><published>2017-04-21T12:00:00+03:00</published><updated>2017-04-21T12:00:00+03:00</updated><id>http://blog.gj.ee/i026/2017/04/21/ari-ja-arendus-mudelid</id><content type="html" xml:base="http://blog.gj.ee/i026/2017/04/21/ari-ja-arendus-mudelid.html">&lt;p&gt;Täna vaatlen veidi vaba tarkvara projekti &lt;a href=&quot;https://owncloud.org&quot;&gt;Owncloud&lt;/a&gt; arendus ja ärimudelit.&lt;/p&gt;
 
 &lt;p&gt;Olles ise kasutanud Owncloudi juba mõned aastad olen ma seda projekti ja tema käekäiku jälginud juba mõnda aega.
 Alustaksin aga veidi kaugemalt, miks ma üldse omalajal valisin Owncloudi oma andmete talletamiseks ja sünkroniseerimiseks erinvate seadmete vahel.
