@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Teaduri mõtted by teadur</title>
+    <link rel="stylesheet" href="/assets/css/style.css?v=f7a604824db739676558433b44661d25415d3c8c">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/assets/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/assets/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="http://github.com/teadur/teadur.github.io">View On GitHub</a></li>
+          
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Teaduri mõtted</h1>
+          <p>Siin blogis arvan ma erinevatel teemadel
+</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="http://github.com/teadur">teadur</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <link rel="stylesheet" href="/assets/main.css">
+<article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Wannacrypt lunavara</h1>
+  </header>
+
+  <div class="post-content">
+    <p>Lunavara ei ole tegelikult midagi uut siin maailmas, aga laialdaselt hakkas ta levima peale bitcoini võidukäiku kuna siis tekkis kurikaeltel töötav meetod kuidas ohvritelt raha kätte saada.</p>
+
+<p>Täna vaatlen aga ühte konkreetset lunavara nimega Wannacrypt mis sai kahe päevaga ülemaailma kuulsaks, seda just sellepärast et levis meeletu kiirusega erinevates võrkudes ülemaailma.
+Ühe päeva jooksul said pihta Euroopa ja Lõuna-Ameerika üks suurimaid telekommi ettevõtteid <a href="https://www.theregister.co.uk/2017/05/12/spain_ransomware_outbreak/">Telefonica</a> ning Inglismaa haiglaid opereeriv <a href="https://www.theregister.co.uk/2017/05/12/nhs_hospital_shut_down_due_to_cyber_attack/">NHS</a> kuna antud lunavara ründab Microsofti platvormil jooksvaid seadmeid siis Telefonica rünne mõjutas peamiselt kontoritööd aga NHS-i rünne mõjutas reaalselt haiglate tööd ja arstiabi teenuse kättesaadavust. Telefonica artiklist leiab ka viiteid et viga oli NSA-le  juba ammu teada ja ilmselt kasutasid nad seda inimeste järele luuramiseks, selle paljastas <a href="https://arstechnica.com/security/2017/04/nsa-leaking-shadow-brokers-just-dumped-its-most-damaging-release-yet/">ShadowBrokersi</a> rühmitus. Vähemalt oli ShadowBorkersil niipalju eetikat et teavitasid sellest veast kõigepealt <a href="https://technet.microsoft.com/en-us/library/security/ms17-010.aspx">Microsofti</a> kes paikas selle vea juba Märtsi kuus.</p>
+
+<p>Kuidas siis on ikkagi võimalik et näeme nii kurba <a href="https://intel.malwaretech.com/botnet/wcrypt">nakatumise statistikat</a>, sisuliselt 110 tuhat nakatumist kahe päevaga? Ja seda üle maailma, kusjuures tundub et kõige rohkem on nakatumis Venemaal. Väidetavalt sai pihta isegi <a href="https://themoscowtimes.com/news/wcry-virus-reportedly-infects-russian-interior-ministrys-computer-network-57984">Venemaa siseministeerium</a>
+<img src="/assets/wannacry_03.png" alt="Wannacry kaart" class="center-image" /></p>
+
+<p>Õnneks on turva lahenduste pakkujad kiirsti <a href="https://securelist.com/blog/incidents/78351/wannacry-ransomware-used-in-widespread-attacks-all-over-the-world/">reageerinud</a> ja avaldanud nakatumist põhjustavate failide räsid.
+Mis on veelgi üllatavam on et Microsoft on paiganud isegi <a href="https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/">Windows XP</a> mille ametlik turvatugi on ammu lõppenud.</p>
+
+<p>Minumeelest on see väga õpetlik lugu sellest, et süsteeme tuleb paigata aegsasti, kuigi vea parandamisest on möödas kaks kuud on siiski saanud pihta üle 110 tuhande arvuti ja seda väga kriitilistes kohtades, ilmselgelt peavad asutuste turvajuhid/it inimesed vaatama otsa peamiselt iseendale, või kas see on ikka nii? 
+Kõvasti sai pihta meditsiinisektor ja seal on paraku probleemiks see et paljusi meditsiiniseadmeid juhitakse arvutitega mille tarkvara on aegunud ja seda alati mitte kohaliku it personali tegematta jätmise pärast, kuna tihtilugu võib selliste süteemide uuendamine viia selleni et seadmeid ei tööta enam, ehk siis tegelikult tuleks siinkohal hoopis heita kuri pilk tootjate suunas kes toodavad seadmeid aga ei hooli nende turvalisusest peale toote maha müümist kliendile. Eks sellest ole õppida seda et tuleb hoolega valida kellelt seadmeid osta ja nõuda neilt ka turvauuendusi. Kui aga juba oldakse selliste õnnetute seadmete otsas siis tuleb nad ülejäänud võrgust kindlasti eraldada võrgutasemel, et suvalisest tööjaamast ei saaks lunavara sellistele seadmetele ligi.</p>
+
+<p>Lisaks näitab see lugu et ilmselgelt asutused ei rakenda turvapaikade automaatset paigaldamist ja seda ka suurtes organisatsioonides kus on kindlasti ka suured IT meeskonnad. Kuigi ära kasutatud viga on suhteliselt uus on see siiski mitu kuud vana ja enamusel inimestel oleks olnud võimalik nakatumist vältida.</p>
+
+
+  </div>
+
+</article>
+<a href="/tag/i026.html" rel="tag">I026</a>, <a href="/tag/lunavara.html" rel="tag">lunavara</a>, <a href="/tag/turva.html" rel="tag">turva</a>
+
+
+      </section>
+
+    </div>
+
+    
+      <script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-98190052-1', 'auto');
+        ga('send', 'pageview');
+      </script>
+    
+  </body>
+</html>
