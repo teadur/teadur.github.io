@@ -1,5 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://blog.gj.ee/feed.xml" rel="self" type="application/atom+xml" /><link href="http://blog.gj.ee/" rel="alternate" type="text/html" /><updated>2017-05-19T22:17:07+03:00</updated><id>http://blog.gj.ee/</id><title type="html">Teaduri mõtted</title><subtitle>Siin blogis arvan ma erinevatel teemadel
-</subtitle><entry><title type="html">Kolverentside eetikakoodeksid</title><link href="http://blog.gj.ee/i026/2017/05/19/eetika.html" rel="alternate" type="text/html" title="Kolverentside eetikakoodeksid" /><published>2017-05-19T21:00:00+03:00</published><updated>2017-05-19T21:00:00+03:00</updated><id>http://blog.gj.ee/i026/2017/05/19/eetika</id><content type="html" xml:base="http://blog.gj.ee/i026/2017/05/19/eetika.html">&lt;p&gt;Minujaoks oli lausa üllatav, et kolverentsid tunnevad vajadust panna kirja oma eetika koodeksid, reeglina käivad kolverentsidel ju väga mõistlikud inimesed.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://blog.gj.ee/feed.xml" rel="self" type="application/atom+xml" /><link href="http://blog.gj.ee/" rel="alternate" type="text/html" /><updated>2017-05-21T02:02:29+03:00</updated><id>http://blog.gj.ee/</id><title type="html">Teaduri mõtted</title><subtitle>Siin blogis arvan ma erinevatel teemadel
+</subtitle><entry><title type="html">RE: Tarkvara tagauksed</title><link href="http://blog.gj.ee/i026/2017/05/20/tagauksed.html" rel="alternate" type="text/html" title="RE: Tarkvara tagauksed" /><published>2017-05-20T21:00:00+03:00</published><updated>2017-05-20T21:00:00+03:00</updated><id>http://blog.gj.ee/i026/2017/05/20/tagauksed</id><content type="html" xml:base="http://blog.gj.ee/i026/2017/05/20/tagauksed.html">&lt;p&gt;Minu mõtted seoses artikliga &lt;a href=&quot;https://wiki.itcollege.ee/index.php/I026_-_Kevad_2017_-_Tarkvara_tagauksed&quot;&gt;Tarkvara tagauksed - poolt ja vastu&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Selguse huvides peaks kõigepealt defineerima erinevad tarkvara tagauste vormid, laias laastus lööksin nad
+kaheks: 1) see on teadaolev võimalus 2) tahtlikult tekitatud turvanõrkus/turvanõrkus(edaspidi turvaõrkus) millest on teada saadud aga ei ole teavitatud tootjat 
+esimeste puhul saab teoorias rakendada (loodetavasti) mõistlikuid turvameetmeid, et kolmandad isikud neid ära kasutada ei saaks(väga väärtuslik toode kolmanda osapoolte ründajatel - ehk siis suur risk).
+Teise puhul puudub kaitse kõigil kui neid ei aita just nende töökeskkonna erinevad turvameetmed, ehk siis need on isegi ohtlikumad.
+Siiski antud kontekstis ma ei loeks automaatset uuendussüsteemi tagaukseks, kuna eeldus on et sa usaldad oma tarkvara tarnijat.&lt;/p&gt;
+
+&lt;p&gt;Siinkohal ilmnebki vaba tarkvara võlu, teoorias on iga koodirea muudatus muudatus trackitav loojani läbi krüptograafiliste allkirjade.
+Arendaja teeb git-i kaudu commiti oma tarkvara repositoorumisse, jääb maha git-s kasutusel olev sha1 räsi mis on seotud arendaja ssh võtmega(mille abil kood kesksesse repositooriumisse laetakse).
+Tarkvarat tootev ettevõte/community signeerib tarkvara väljalaskel ( pakub lisaks tarkvara arhiivile räsifaile et kontrollida et tarkvara on just selline nagu tootja selle välja andis,tavaliselt https lehel mis on seotud antud organisatsiooniga).
+Igaüks saab tarkvaratootja lähtekoodi(githubis/gitlabis/bitbucketis) võrrelda sellega mis on väljalaske arhiivis.&lt;/p&gt;
+
+&lt;p&gt;Distributsiooni haldur (näiteks Debiani/Fedora) haldaja kasutab tarkvaratootja arhiivi ja pakendab selle oma Linuxi distributsiooni spetsiifiliselt signeerides selle oma PGP/GPG võtmetega.
+Kõigepealt signeerib paki(lähtekoodi paki), pakihalduri võti ehk siis on selge kes arhiivi muutmata/muudetul kujul pakiks tegi. seejärel genereeritakse pakist binaarid mis signeeritakse teise võtmega mida haldavad paki repositooriumi haldajad.
+Kui nüüd selline pakett kuskil ahelas muudetub saab siis on selge kes tarkvara muutis ja kuidas.
+Lisaks annab selline süsteem võimaluse et kui mõni isik muutub ebausaldusväärseks või võib tõenäoliselt olla kergesti mõjutatavas olukorras siis tema võtmeid saab mitte usaldada ja tema ülessande
+kellegile teisele edasi anda, &lt;a href=&quot;https://www.phoronix.com/scan.php?page=news_item&amp;amp;px=Debian-Dmitry-Bogatov&quot;&gt;“heaks” näiteks on Dmitry Bogatovi arreteerimine&lt;/a&gt;
+Selline kontrollitavus puudub aga suletud lähtekoodiga tarkvaras, ehk siis pole aimugi mis “kapoti all” toimub.&lt;/p&gt;
+
+&lt;p&gt;Minumeelest on autorid siin teinud liiga Linuxile ja Debianile kuna nende mudel on oluliselt läbipaistvam/kontrollitav/turvalisem võrreldes suletud lähtekoodiga tarkvaraga.
+Minuteada ei ole Debiani mudel ka kuidagi ebaturvalisem kui mõni muu distributsioon.&lt;/p&gt;
+
+&lt;p&gt;Tundub veidi kohatu et tööloojad on välja toonud Back Orifice kui programmist mis omas tagaust, tegemist oligi “häkkerite/script kiddide” tooliga millega Windowsi tööjaamasi kontrollida, mitte mingi
+väga levinud tarkvara mida kasutati mõistlikel eesmärkidel ja kuhu on oli tagauks sisse istutatud.&lt;/p&gt;
+
+&lt;p&gt;Ma ei nõustuks täielikutl autorite väitega, et tagauste haldamine on takistus innovatsiooni tegemisel, tehniliselt ei ole see ülemäära keerukas, pigem on probleem selles et ükskõik kui hea lahendus on,
+kindlasti on võimalik ka mitte soovitud isikutel seda ära kasutada kui neil on piisavalt suur motivatsioon.&lt;/p&gt;
+
+&lt;p&gt;Lawful hackingu osas on väljatoodud emaili päiseid kui teada tagauks, mina loeksin seda pigem tehnoloogiliseks eripäraks mida teadlik kasutaja suudab mõista ja kontrollida. Lisaks on päiste puhul tegemist
+andmetega andmetest niiöelda meta andmetega, mis annavad küll infot osapoolte kohta kuid siiski ei avalda sõnumivahetuse sisu. Heaks näiteks on &lt;a href=&quot;https://protonmail.com/&quot;&gt;Protonmail&lt;/a&gt; või üldiselt &lt;a href=&quot;https://en.wikipedia.org/wiki/GNU_Privacy_Guard&quot;&gt;GPG&lt;/a&gt; kasutamine,
+millega saab mailide sisu kaitsta.&lt;/p&gt;
+
+&lt;p&gt;Minumeelest ei tohi lawful inspection põhineda turvanõrkustel vaid peaks põhinema läbipaistvusel, ehk siis on teada et tarkvara on lawful inception tugi.
+Ausam tundub lähenemine kus krüptograafia on turvaline ja riikidel on õigus piisava põhjendatuse korral nõuda salajaste võtmete avaldamist, aga seda just piisava põhjendatuse puhul, mitte oma suva järgi.
+Heaks näiteks sellise seaduseandluse ja mõistliku rakendamisel on UK’s toimunud &lt;a href=&quot;http://thehackernews.com/2016/05/hacker-lauri-love.html&quot;&gt;Lauri Love-i&lt;/a&gt; juhtum, kus kohus otsustas tema kasuks,
+minumeelest peab igakordne isikute õiguste piiramine olema kohtu otsus mitte vaikimisi poliitika.&lt;/p&gt;
+
+&lt;p&gt;Turvanõrkuste kasutamine inimeste järele luuramiseks on lausa kriminaalne, kuna kindel on see et varem või hiljem hakkavad neid &lt;a href=&quot;https://www.theregister.co.uk/2017/05/13/wannacrypt_ransomware_worm/&quot;&gt;ära kasutama inimesed kes on infost teadlikud&lt;/a&gt; , seejuures ei pea nad omama
+mingit krüptograafilist võtit selleks. Ükskõik kui turvaline on süsteem, piisavalt motiveeritud ründaja suudab sinna alati sisse saada (või lekivad andmed läbi inimeste) väga ilmekad näited on viimase aja
+(NSA)[https://it.slashdot.org/story/17/05/20/1959240/new-smb-worm-uses-seven-nsa-hacking-tools-wannacry-used-just-two]  ja &lt;a href=&quot;https://our.wikileaks.org/Vault_7&quot;&gt;CIA-le&lt;/a&gt; teadaolevate turvanõrkuste lekkimised.&lt;/p&gt;
+
+&lt;p&gt;Mulle tundub kogu Apple case teatrina, tehnilise inimesena on ilmselge et selline agentuur nagu FBI suudab igaljuhul avada 4 kohalise pin-iga kaitstud seadme, kloonides seadme mälu/rauda selliselt, et
+parooli proovimiste arv muutub lõpmatuks, ilmselt oli kogu selle teema point kuskil mujal ja taheti luua pretsetenti et mida saaks kasutada tulevikus kui krüptograafia/turvameetmed on nii arenenud kus, see
+tõesti enam võimalik ei ole. Ja tundub et peamine eesmärk oli Apple-ile hea turvamaine tekitamine (mis on tegelikult õigustatud) aga siiski tundub rohkem kommunikatsiooni/marketingi sündmusena.&lt;/p&gt;
+
+&lt;p&gt;Üldiselt võib öelda et töö oli huvitav ja oli välja toodud erinevaid poolt ja vastu argumente, sellistel teemadel mõtisklemine on kindlasti väga vajalik, sest määrab kas liigume tulevikus vaba maailma või orwelli maailma poole.&lt;/p&gt;</content><author><name></name></author><category term="I026" /><summary type="html">Minu mõtted seoses artikliga Tarkvara tagauksed - poolt ja vastu</summary></entry><entry><title type="html">Kolverentside eetikakoodeksid</title><link href="http://blog.gj.ee/i026/2017/05/19/eetika.html" rel="alternate" type="text/html" title="Kolverentside eetikakoodeksid" /><published>2017-05-19T21:00:00+03:00</published><updated>2017-05-19T21:00:00+03:00</updated><id>http://blog.gj.ee/i026/2017/05/19/eetika</id><content type="html" xml:base="http://blog.gj.ee/i026/2017/05/19/eetika.html">&lt;p&gt;Minujaoks oli lausa üllatav, et kolverentsid tunnevad vajadust panna kirja oma eetika koodeksid, reeglina käivad kolverentsidel ju väga mõistlikud inimesed.&lt;/p&gt;
 
 &lt;p&gt;Esmakordselt märkasin, et see on osadele inimestele oluline teema kui külastasin kolverentsi &lt;a href=&quot;https://ripe71.ripe.net/on-site/code-of-conduct/&quot;&gt;RIPE 71 Bukarest Rumeenias&lt;/a&gt;, alguses tundus see natukene imelik,
 kui lugeda millist käitumist kolverentsi külastajalt oodatakse siis tunduvad ju kõik väljatoodud punktid täitsa mõistlikud. Võiks lausa öelda, et iga vähegi kasvatatud inimene käituks nii nagunii, ilma selleks eraldi mingit paberit lugedes. Ei läinud palju aega kui juhtusin järgmisele kolverentsile &lt;a href=&quot;https://2016.pgconf.eu/codeofconduct/&quot;&gt;PGconf 2016 Tallinnas&lt;/a&gt;, kus jällegi tõstatati see teema kolverentsi alguses ja soovitati kõigil inimestel nende eetika koodeks läbi lugeda.&lt;/p&gt;
